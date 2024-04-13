@@ -58,7 +58,9 @@ const App = () => {
 
   const data = {
     position,
-    boxPosition
+    boxPosition,
+    setMode,
+    notes,
   }
 
   return (
