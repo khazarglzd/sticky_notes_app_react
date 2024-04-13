@@ -21,8 +21,17 @@ img {
   font-size: 14px;
 }
 
-.note {
+.note-container {
   background: var(--color);
+  margin-top: 40px;
+  width: 300px;
+  margin-left: -150px;
+}
+
+.note-container .note {
+  padding: 5px 10px;
+  border-radius: 4px;
+  color: #fff;
 }
 
 .note-box {

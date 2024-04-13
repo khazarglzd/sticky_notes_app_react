@@ -23,7 +23,7 @@ const NoteBox = () => {
             text: 'Note',
         },
     ]
-    const { boxPosition, setMode, notes } = useContext(MainContext)
+    const { boxPosition, setBoxVisible, setMode, notes, setNotes } = useContext(MainContext)
 
     const [color, setColor] = useState(types[0].color)
     const [note, setNote] = useState('')
@@ -31,6 +31,22 @@ const NoteBox = () => {
     const changeColor = (e) => {
         setColor(e.target.value)
     }
+
+    const addNote = () => {
+        const currentNote = {
+            note,
+            number: notes.length + 1,
+            color,
+            position: {
+                x: boxPosition.x,
+                y: boxPosition.y
+            }
+        }
+        setNotes([...notes, currentNote])
+        setBoxVisible(false)
+        setMode(true)
+    }
+
     return (
         <div className="note-box" onMouseEnter={() => setMode(false)} onMouseLeave={() => setMode(true)} style={{
             '--color': color,
@@ -44,7 +60,7 @@ const NoteBox = () => {
                 ))}
             </select>
             <textarea onChange={(e) => setNote(e.target.value)} cols="30" rows="5" />
-            <button disabled={!note}>Ekle</button>
+            <button onClick={addNote} disabled={!note}>Add</button>
         </div>
     )
 }

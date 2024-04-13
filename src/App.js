@@ -13,6 +13,7 @@ const App = () => {
   const [notes, setNotes] = useState([{
     id: "1",
     note: "test note",
+    number: 1,
     color: "red",
     position: {
       x: 350,
@@ -61,7 +62,10 @@ const App = () => {
     boxPosition,
     setMode,
     notes,
+    setNotes,
+    setBoxVisible
   }
+
 
   return (
     <MainContext.Provider value={data}>
