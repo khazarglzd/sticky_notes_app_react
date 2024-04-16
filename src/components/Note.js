@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react'
 import MainContext from '../MainContext';
+import Draggable from 'react-draggable';
 
 
 const Note = (note) => {
@@ -13,13 +14,15 @@ const Note = (note) => {
     }
 
     return (
-        <div className="note-container"
-            style={{ '--color': note.color, position: 'absolute', top: note.position.y, left: note.position.x }}>
-            <span onClick={showNote} className="note-box-number">{note.number}</span>
-            <div className="note" style={{ display: visible ? 'flex' : 'none' }}>
-                {note.note}
+        <Draggable defaultPosition={{ x: note.position.x, y: note.position.y }} >
+            <div className="note-container" onMouseEnter={() => setMode(false)} onMouseLeave={() => setMode(true)}
+                style={{ '--color': note.color, position: 'absolute', top: 0, left: 0 }}>
+                <span onClick={showNote} className="note-box-number">{note.number}</span>
+                <div className="note" style={{ display: visible ? 'flex' : 'none' }}>
+                    {note.note}
+                </div>
             </div>
-        </div>
+        </Draggable>
     )
 }
 
