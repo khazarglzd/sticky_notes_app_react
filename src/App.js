@@ -10,16 +10,7 @@ const App = () => {
   const screen = useRef(null)
   const [mode, setMode] = useState(false)
   const [position, setPosition] = useState({ x: 0, y: 0 })
-  const [notes, setNotes] = useState([{
-    id: "1",
-    note: "test note",
-    number: 1,
-    color: "red",
-    position: {
-      x: 350,
-      y: 350
-    }
-  }])
+  const [notes, setNotes] = useState(localStorage.notes && JSON.parse(localStorage.notes) || [])
   const [boxPosition, setBoxPosition] = useState({
     x: 0,
     y: 0,
@@ -29,6 +20,11 @@ const App = () => {
   useEffect(() => {
     screen.current.focus()
   }, [])
+
+  useEffect(() => {
+    localStorage.setItem('notes', JSON.stringify(notes))
+  }, [notes])
+
 
   const handleMouseMove = (e) => {
     setPosition({

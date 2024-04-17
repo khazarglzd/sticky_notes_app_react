@@ -6,15 +6,18 @@ import Draggable from 'react-draggable';
 const Note = (note) => {
 
     const [visible, setVisible] = useState(false)
+    const [clickable, setClickable] = useState(true)
     const { setMode } = useContext(MainContext)
 
 
     const showNote = () => {
-        setVisible(!visible)
+        if (clickable) {
+            setVisible(!visible)
+        }
     }
 
     return (
-        <Draggable defaultPosition={{ x: note.position.x, y: note.position.y }} >
+        <Draggable onDrag={() => setClickable(false)} onStart={() => setClickable(true)} defaultPosition={{ x: note.position.x, y: note.position.y }} >
             <div className="note-container" onMouseEnter={() => setMode(false)} onMouseLeave={() => setMode(true)}
                 style={{ '--color': note.color, position: 'absolute', top: 0, left: 0 }}>
                 <span onClick={showNote} className="note-box-number">{note.number}</span>
