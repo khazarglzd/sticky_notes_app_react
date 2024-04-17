@@ -3,9 +3,6 @@ import { useContext, useState } from 'react'
 import MainContext from '../MainContext'
 
 const NoteBox = () => {
-
-
-
     const types = [
         {
             name: 'comment',
@@ -32,7 +29,7 @@ const NoteBox = () => {
         setColor(e.target.value)
     }
 
-    const addNote = () => {
+    const addNote = (e) => {
         const currentNote = {
             note,
             number: notes.length + 1,
@@ -42,9 +39,11 @@ const NoteBox = () => {
                 y: boxPosition.y
             }
         }
+        e.stopPropagation()
         setNotes([...notes, currentNote])
         setBoxVisible(false)
-        setMode(true)
+        setMode(false)
+
     }
 
     return (

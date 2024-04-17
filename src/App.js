@@ -40,7 +40,11 @@ const App = () => {
       setMode(!mode)
       setBoxVisible(false)
     }
+    if (e.key === "Escape") {
+      setBoxVisible(false)
+    }
   }
+
 
   const handleClick = (e) => {
     if (mode) {
@@ -53,13 +57,14 @@ const App = () => {
 
   }
 
+
   const data = {
     position,
     boxPosition,
     setMode,
     notes,
     setNotes,
-    setBoxVisible
+    setBoxVisible,
   }
 
 
